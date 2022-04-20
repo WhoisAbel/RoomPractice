@@ -31,10 +31,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def room_version = "2.4.2"
     def arch_version = "2.4.1"
     def nav_version = "2.4.2"
