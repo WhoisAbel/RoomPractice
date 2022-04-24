@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RoomPractice</string>
+    <string name="label_first_name">First Name</string>
+    <string name="label_last_name">Last Name</string>
+    <string name="label_age">Age</string>
+    <string name="label_add">Add</string>
 
 </resources>
