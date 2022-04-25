@@ -1,4 +1,4 @@
-package ir.whoisAbel.roompractice
+package ir.whoisAbel.roompractice.user.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import ir.whoisAbel.roompractice.R
 
 class MainActivity : AppCompatActivity() {
 

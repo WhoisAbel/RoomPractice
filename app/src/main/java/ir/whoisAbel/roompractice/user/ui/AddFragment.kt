@@ -1,28 +1,28 @@
 package ir.whoisAbel.roompractice.user.ui
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import ir.whoisAbel.roompractice.R
 import ir.whoisAbel.roompractice.databinding.FragmentAddBinding
-import ir.whoisAbel.roompractice.db.UserDatabase
 import ir.whoisAbel.roompractice.db.entities.User
-import ir.whoisAbel.roompractice.user.data.UserLocalDataSource
-import ir.whoisAbel.roompractice.user.data.UserRepository
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
 
-class AddFragment : Fragment() {
+class AddFragment : Fragment(), KodeinAware {
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var viewModel: UserViewModel
+    override val kodein by closestKodein()
+
+    private val factory: UserViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,11 +45,7 @@ class AddFragment : Fragment() {
 
     private fun initValue() {
 
-        val userDatabase = UserDatabase(requireContext())
-        val userLocalDataSource = UserLocalDataSource(userDatabase)
-        val userRepository = UserRepository(userLocalDataSource)
-        val factory = UserViewModelFactory(userRepository)
-        viewModel = ViewModelProvider(this,factory)[UserViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
 
     }
 
@@ -78,10 +74,11 @@ class AddFragment : Fragment() {
                     age = Integer.parseInt(age)
                 )
             )
-            Toast.makeText( requireContext(),"Successfully inserted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Successfully inserted", Toast.LENGTH_SHORT).show()
             findNavController().navigateUp()
-        }else{
-            Toast.makeText( requireContext(),"Please fill out all fields", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT)
+                .show()
         }
 
     }
@@ -89,6 +86,5 @@ class AddFragment : Fragment() {
     private fun checkInput(name: String, lName: String, age: String): Boolean {
         return !(TextUtils.isEmpty(name) && TextUtils.isEmpty(lName) && age.isEmpty())
     }
-
 
 }
