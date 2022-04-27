@@ -9,4 +9,8 @@ class UserRepository(private val userLocalDataSource: UserLocalDataSource) {
     suspend fun updateData(user: User) = userLocalDataSource.updateData(user)
 
     fun readAllData() = userLocalDataSource.readAllData()
+
+    suspend fun deleteAllUser() = userLocalDataSource.deleteAllUser()
+
+    suspend fun deleteUser(user: User) = userLocalDataSource.deleteUser(user)
 }

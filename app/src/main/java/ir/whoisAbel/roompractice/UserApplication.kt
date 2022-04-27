@@ -7,7 +7,7 @@ import ir.whoisAbel.roompractice.di.ViewModelFactory
 import ir.whoisAbel.roompractice.di.bindViewModel
 import ir.whoisAbel.roompractice.user.data.UserLocalDataSource
 import ir.whoisAbel.roompractice.user.data.UserRepository
-import ir.whoisAbel.roompractice.user.ui.UserViewModel
+import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule

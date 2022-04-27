@@ -1,4 +1,4 @@
-package ir.whoisAbel.roompractice.user.ui
+package ir.whoisAbel.roompractice.user.ui.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,5 +23,13 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun updateData(user: User) = CoroutineScope(Dispatchers.IO).launch {
         userRepository.updateData(user)
+    }
+
+    fun deleteUser(user: User) = CoroutineScope(Dispatchers.IO).launch {
+        userRepository.deleteUser(user)
+    }
+
+    fun deleteAllUser() = CoroutineScope(Dispatchers.IO).launch {
+        userRepository.deleteAllUser()
     }
 }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/addFragment"
-        android:name="ir.whoisAbel.roompractice.user.ui.AddFragment"
+        android:name="ir.whoisAbel.roompractice.user.ui.add.AddFragment"
         android:label="Add"
         tools:layout="@layout/fragment_add">
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="ir.whoisAbel.roompractice.user.ui.ListFragment"
+        android:name="ir.whoisAbel.roompractice.user.ui.list.ListFragment"
         android:label="List"
         tools:layout="@layout/fragment_list">
 
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/updateFragment"
-        android:name="ir.whoisAbel.roompractice.user.ui.UpdateFragment"
+        android:name="ir.whoisAbel.roompractice.user.ui.update.UpdateFragment"
         android:label="Update"
         tools:layout="@layout/fragment_update">
 
