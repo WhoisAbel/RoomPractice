@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ir.whoisAbel.roompractice.databinding.FragmentAddBinding
 import ir.whoisAbel.roompractice.db.entities.User
+import ir.whoisAbel.roompractice.di.kodeinViewModel
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -19,10 +20,8 @@ import org.kodein.di.generic.instance
 class AddFragment : Fragment(), KodeinAware {
 
     private lateinit var binding: FragmentAddBinding
-    private lateinit var viewModel: UserViewModel
+    private val viewModel: UserViewModel by kodeinViewModel()
     override val kodein by closestKodein()
-
-    private val factory: UserViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +43,6 @@ class AddFragment : Fragment(), KodeinAware {
 
 
     private fun initValue() {
-
-        viewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
 
     }
 
