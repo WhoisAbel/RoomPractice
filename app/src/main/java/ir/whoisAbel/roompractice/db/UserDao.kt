@@ -1,10 +1,7 @@
 package ir.whoisAbel.roompractice.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import ir.whoisAbel.roompractice.db.entities.User
 
 @Dao
@@ -15,6 +12,9 @@ interface UserDao {
 
     @Query("SELECT * FROM user_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<User>>
+
+    @Update
+    suspend fun updateData(user: User)
 
 
 
