@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ir.whoisAbel.roompractice.databinding.FragmentAddBinding
+import ir.whoisAbel.roompractice.db.entities.Address
 import ir.whoisAbel.roompractice.db.entities.User
 import ir.whoisAbel.roompractice.di.kodeinViewModel
 import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
@@ -67,7 +68,8 @@ class AddFragment : Fragment(), KodeinAware {
                     id = 0,
                     name = firstName,
                     lastName = lastName,
-                    age = Integer.parseInt(age)
+                    age = Integer.parseInt(age),
+                    address = Address("Mashhad")
                 )
             )
             Toast.makeText(requireContext(), "Successfully inserted", Toast.LENGTH_SHORT).show()
