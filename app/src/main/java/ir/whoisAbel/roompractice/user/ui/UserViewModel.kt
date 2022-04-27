@@ -20,4 +20,8 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     fun addUserA(user: User) = CoroutineScope(Dispatchers.IO).launch {
         userRepository.addUser(user)
     }
+
+    fun updateData(user: User) = CoroutineScope(Dispatchers.IO).launch {
+        userRepository.updateData(user)
+    }
 }

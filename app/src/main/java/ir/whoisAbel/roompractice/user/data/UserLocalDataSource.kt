@@ -9,4 +9,6 @@ class UserLocalDataSource(private val userDatabase: UserDatabase) {
 
     fun readAllData() = userDatabase.userDao().readAllData()
 
+    suspend fun updateData (user: User) = userDatabase.userDao().updateData(user)
+
 }
