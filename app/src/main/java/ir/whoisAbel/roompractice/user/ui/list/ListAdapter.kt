@@ -1,4 +1,4 @@
-package ir.whoisAbel.roompractice.user.ui
+package ir.whoisAbel.roompractice.user.ui.list
 
 import android.view.LayoutInflater
 import android.view.View

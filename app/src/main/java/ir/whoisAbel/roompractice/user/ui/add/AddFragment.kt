@@ -1,4 +1,4 @@
-package ir.whoisAbel.roompractice.user.ui
+package ir.whoisAbel.roompractice.user.ui.add
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ir.whoisAbel.roompractice.databinding.FragmentAddBinding
 import ir.whoisAbel.roompractice.db.entities.User
 import ir.whoisAbel.roompractice.di.kodeinViewModel
+import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
-import org.kodein.di.generic.instance
 
 
 class AddFragment : Fragment(), KodeinAware {

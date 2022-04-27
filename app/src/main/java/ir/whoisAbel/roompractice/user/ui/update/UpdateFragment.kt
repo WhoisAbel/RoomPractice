@@ -1,17 +1,18 @@
-package ir.whoisAbel.roompractice.user.ui
+package ir.whoisAbel.roompractice.user.ui.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import ir.whoisAbel.roompractice.R
 import ir.whoisAbel.roompractice.databinding.FragmentUpdateBinding
 import ir.whoisAbel.roompractice.db.entities.User
 import ir.whoisAbel.roompractice.di.kodeinViewModel
+import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -42,6 +43,8 @@ class UpdateFragment : Fragment(), KodeinAware {
     private fun initView() {
 
         binding.user = param.user
+
+        setHasOptionsMenu(true)
 
         binding.updateBtn.setOnClickListener {
             updateUser()
@@ -76,4 +79,42 @@ class UpdateFragment : Fragment(), KodeinAware {
         return !(TextUtils.isEmpty(name) && TextUtils.isEmpty(lName) && age.isEmpty())
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_munu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.id_delete -> {
+                deleteUser()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteUser() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yse") { _, _ ->
+            viewModel.deleteUser(param.user)
+            Toast.makeText(
+                requireContext(),
+                "Successfully removed${param.user.name}",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            findNavController().navigateUp()
+        }
+
+        builder.setNegativeButton("No") { _, _ ->
+
+        }
+
+        builder.setTitle("Delete ${param.user.name}")
+        builder.setMessage("Are you sure to delete ${param.user.name}")
+        builder.create().show()
+    }
+
 }
+
