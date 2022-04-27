@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ir.whoisAbel.roompractice.R
 import ir.whoisAbel.roompractice.databinding.FragmentUpdateBinding
+import ir.whoisAbel.roompractice.db.entities.Address
 import ir.whoisAbel.roompractice.db.entities.User
 import ir.whoisAbel.roompractice.di.kodeinViewModel
 import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
@@ -63,7 +64,8 @@ class UpdateFragment : Fragment(), KodeinAware {
                     id = param.user.id,
                     name = firstName,
                     lastName = lastName,
-                    age = Integer.parseInt(age.toString())
+                    age = Integer.parseInt(age.toString()),
+                    address = Address("")
                 )
             )
             Toast.makeText(requireContext(), "Successfully updated", Toast.LENGTH_SHORT).show()
