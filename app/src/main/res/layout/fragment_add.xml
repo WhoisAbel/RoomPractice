@@ -51,6 +51,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addLastName_et" />
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/addAddress_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/label_address"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addAge_et" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_btn"
             android:layout_width="match_parent"
@@ -60,7 +73,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addAge_et" />
+            app:layout_constraintTop_toBottomOf="@+id/addAddress_et" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

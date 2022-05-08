@@ -6,14 +6,17 @@ import android.text.TextUtils
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ir.whoisAbel.roompractice.R
+import ir.whoisAbel.roompractice.core.getBitmap
 import ir.whoisAbel.roompractice.databinding.FragmentUpdateBinding
 import ir.whoisAbel.roompractice.db.entities.Address
 import ir.whoisAbel.roompractice.db.entities.User
 import ir.whoisAbel.roompractice.di.kodeinViewModel
 import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
+import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -56,18 +59,22 @@ class UpdateFragment : Fragment(), KodeinAware {
     private fun updateUser() {
         val firstName = binding.updateFirstNameEt.text?.toString().orEmpty()
         val lastName = binding.updateLastNameEt.text?.toString().orEmpty()
+        val address = binding.updateAddressEt.text?.toString().orEmpty()
         val age = binding.updateAgeEt.text
 
         if (checkInput(firstName, lastName, age.toString())) {
-            viewModel.updateData(
-                User(
-                    id = param.user.id,
-                    name = firstName,
-                    lastName = lastName,
-                    age = Integer.parseInt(age.toString()),
-                    address = Address("")
+            lifecycleScope.launch {
+                viewModel.updateData(
+                    User(
+                        id = param.user.id,
+                        name = firstName,
+                        lastName = lastName,
+                        age = Integer.parseInt(age.toString()),
+                        profilePhoto = getBitmap(requireContext()),
+                        address = Address(address)
+                    )
                 )
-            )
+            }
             Toast.makeText(requireContext(), "Successfully updated", Toast.LENGTH_SHORT).show()
             findNavController().navigateUp()
         } else {

@@ -58,6 +58,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/updateLastName_et" />
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/updateAddress_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/label_address"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateAge_et" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/update_btn"
             android:layout_width="match_parent"
@@ -67,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateAge_et" />
+            app:layout_constraintTop_toBottomOf="@+id/updateAddress_et" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
