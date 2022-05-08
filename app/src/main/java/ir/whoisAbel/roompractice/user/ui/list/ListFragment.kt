@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import ir.whoisAbel.roompractice.R
 import ir.whoisAbel.roompractice.databinding.FragmentListBinding
 import ir.whoisAbel.roompractice.di.kodeinViewModel
@@ -80,7 +81,6 @@ class ListFragment : Fragment(), KodeinAware {
 
         return super.onOptionsItemSelected(item)
     }
-
 
     private fun deleteAllUser() {
         val builder = AlertDialog.Builder(requireContext())

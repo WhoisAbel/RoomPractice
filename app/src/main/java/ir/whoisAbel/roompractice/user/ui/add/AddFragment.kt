@@ -7,12 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import ir.whoisAbel.roompractice.core.getBitmap
 import ir.whoisAbel.roompractice.databinding.FragmentAddBinding
 import ir.whoisAbel.roompractice.db.entities.Address
 import ir.whoisAbel.roompractice.db.entities.User
 import ir.whoisAbel.roompractice.di.kodeinViewModel
 import ir.whoisAbel.roompractice.user.ui.viewModel.UserViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 
@@ -60,20 +64,26 @@ class AddFragment : Fragment(), KodeinAware {
     private fun insertDataToDatabase() {
         val firstName = binding.addFirstNameEt.text?.toString().orEmpty()
         val lastName = binding.addLastNameEt.text?.toString().orEmpty()
+        val address = binding.addAddressEt.text?.toString().orEmpty()
         val age = binding.addAgeEt.text?.toString().orEmpty()
 
         if (checkInput(firstName, lastName, age)) {
-            viewModel.addUserA(
-                User(
-                    id = 0,
-                    name = firstName,
-                    lastName = lastName,
-                    age = Integer.parseInt(age),
-                    address = Address("Mashhad")
+            lifecycleScope.launch(Dispatchers.Main) {
+                viewModel.addUserA(
+                    User(
+                        id = 0,
+                        name = firstName,
+                        lastName = lastName,
+                        age = Integer.parseInt(age),
+                        address = Address(address),
+                        profilePhoto = getBitmap(requireContext())
+                    )
                 )
-            )
-            Toast.makeText(requireContext(), "Successfully inserted", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
+
+                Toast.makeText(requireContext(), "Successfully inserted", Toast.LENGTH_SHORT).show()
+                findNavController().navigateUp()
+            }
+
         } else {
             Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT)
                 .show()
